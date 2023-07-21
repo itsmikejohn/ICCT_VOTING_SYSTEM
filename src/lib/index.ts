@@ -102,5 +102,6 @@ export const adminState = writable({
 
 export const voterState = writable({
     getWtToVote:<[]> [],
-    voterComparison: 0.1
+    voterComparison: 0.1,
+    outerVoterComparison: 0.1,
 })
