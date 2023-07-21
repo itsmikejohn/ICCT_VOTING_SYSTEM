@@ -47,7 +47,6 @@
                     },{merge:true})
                 })
                 
-
                 dsComp.loader = false;
                 $adminState.showCreatePosition = false;
 
@@ -102,7 +101,7 @@
         </section>
 
         <section class="flex gap-1 mt-5">
-            <OurButton Title="Create" Logic={dsComp.loader} Logic_title="Creating."
+            <OurButton Title="Create" Logic={dsComp.loader} Logic_title="Creating." Security={dsComp.loader}
             on:click={createHandler}
             />
 

@@ -4,7 +4,7 @@
 
     /** database calls*/
     import { auth,db, adminState } from "$lib";
-    import { onSnapshot, collection, query, orderBy, addDoc, serverTimestamp, setDoc, doc, updateDoc, arrayUnion } from "firebase/firestore";
+    import { onSnapshot, collection, query, orderBy, addDoc, serverTimestamp, setDoc, doc, updateDoc, arrayUnion, increment } from "firebase/firestore";
     
     const dsComp = {
         loader: false,
@@ -40,6 +40,10 @@
         })
         .then(voidResp =>
         {
+            setDoc(doc(collection(db, "dashBoardCount"), "totalCandidates"),{
+                count: increment(1),
+            }, {merge:true})
+            
             dsComp.loader = false;
             $adminState.showNewCandidate = false;
         })
@@ -89,7 +93,7 @@
         </section>
 
         <section class="flex gap-1 mt-2">
-            <OurButton Title="Create" on:click={handleCreateCandidate} Logic={dsComp.loader} Logic_title="Creating."/>
+            <OurButton Title="Create" on:click={handleCreateCandidate} Logic={dsComp.loader} Logic_title="Creating." Security={dsComp.loader}/>
             <OurButton Title="Back" on:click={() => $adminState.showNewCandidate = false}/>
         </section>
     </section>

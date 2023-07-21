@@ -19,9 +19,10 @@
         $adminState.fetchingCandidates = fbData;
     })
 
-    const viewDetailHandler = (candidate:any, outerIndex:number) =>
+    const viewDetailHandler = (candidate:any,outerIndex:number, innerIndex:number) =>
     {
         $adminState.candiComparison = outerIndex;
+        $adminState.innerCandiComparison = innerIndex;
     }
 
 </script>
@@ -31,15 +32,17 @@
         <div class="border-b-2 border-t-2 border-lightBlue py-1">
             <p class="px-2 bg-lightBlue text-white text-center">{candidate.description}</p>
         </div>
-        {#each candidate.candidate as candi}
+        {#each candidate.candidate as candi, innerIndex}
             <section class="p-2">
                 <button class="transition-all px-2 py-1 bg-slate-300 underline hover:font-semibold active:scale-95"
-                on:click={() => viewDetailHandler(candidate, outerIndex)}
+                on:click={() => viewDetailHandler(candidate,outerIndex, innerIndex)}
                 >{candi.fullname}</button>
             </section>
 
             {#if $adminState.candiComparison === outerIndex}
-                <CandidateMoreDetail {candidate} {candi}/>
+                {#if $adminState.innerCandiComparison === innerIndex}
+                    <CandidateMoreDetail {candidate} {candi}/>
+                {/if}
             {/if}
         {/each}
     {/each}

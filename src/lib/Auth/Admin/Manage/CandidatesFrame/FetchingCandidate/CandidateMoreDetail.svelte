@@ -5,7 +5,7 @@
 
     /** Database calls */
     import { auth,db,adminState } from "$lib";
-    import { doc, deleteDoc, updateDoc, collection, arrayRemove } from "firebase/firestore";
+    import { doc, deleteDoc, updateDoc, collection, arrayRemove, onSnapshot, increment } from "firebase/firestore";
     export let candidate:any;
     export let candi:any;
 
@@ -13,6 +13,7 @@
         loader: false,
     }
 
+    
     const deleteHandler = () =>
     {
         dsComp.loader = true;
@@ -24,6 +25,10 @@
         })
         .then(voidResp =>
         {
+            updateDoc(doc(collection(db, "dashBoardCount"), "totalCandidates"), {
+                count: increment(-1)
+            })
+
             dsComp.loader = false;
             $adminState.candiComparison = 0.1;
         })

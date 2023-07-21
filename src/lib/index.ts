@@ -96,6 +96,7 @@ export const adminState = writable({
     fetchingCandidates:<any> [],
     showNewCandidate: false,
     candiComparison:<number> 0.1,
+    innerCandiComparison: 0.1,
     
 
 })

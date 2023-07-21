@@ -24,7 +24,6 @@
     {
         setDoc(doc(collection(db, "votesLogicFromChildCreatedPositions"), candidate.description), {
             [currentUser.uid] : candidate.maxVotes,
-            [currentUser.email]: currentUser.email,
             [candi.fullname + currentUser.uid]: candi.fullname,
 
         }, {merge:true})

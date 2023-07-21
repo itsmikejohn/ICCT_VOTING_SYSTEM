@@ -3,7 +3,7 @@
     import { scale } from "svelte/transition";
 
     import { db, adminState } from "$lib";
-	import { collection, deleteDoc, doc, increment, setDoc } from "firebase/firestore";
+	import { collection, deleteDoc, doc, getDoc, increment, onSnapshot, setDoc, updateDoc } from "firebase/firestore";
 
     export let position:any;
 
@@ -11,23 +11,46 @@
         loader: false,
     }
 
+    
+
     const deleteHandler = () =>
     {
         
         dsComp.loader = true;
-        deleteDoc(doc(collection(db, "positionsFromCreatedPositions"),position.description))
-        .then(voidResp => 
-        {
-            deleteDoc(doc(collection(db, "createdPosition"), position.id))
-            .then(voidResp =>
-            {
-                setDoc(doc(collection(db, "dashBoardCount"), "totalPositions"), {
-                    count: increment(-1)
-                }, {merge:true})
-            })
-            dsComp.loader = false;
-            $adminState.posComparison = 0.1;
+
+        getDoc(doc(collection(db, "positionsFromCreatedPositions"), position.description))
+        .then((snapResp: any) =>
+        {   
+            try {
+
+                const candiLngth = snapResp.data().candidate.length;
+                updateDoc(doc(collection(db, "dashBoardCount"), "totalCandidates"), {
+                    count: increment(-candiLngth),
+                }).catch((errorResp => {}))
+
+            } catch (error) {
+                
+            }
+            
         })
+        .finally(() => 
+        {
+            deleteDoc(doc(collection(db, "positionsFromCreatedPositions"),position.description))
+            .then(voidResp => 
+            {
+                deleteDoc(doc(collection(db, "createdPosition"), position.id))
+                .then(voidResp =>
+                {
+                    setDoc(doc(collection(db, "dashBoardCount"), "totalPositions"), {
+                        count: increment(-1)
+                    }, {merge:true})
+                })
+                dsComp.loader = false;
+                $adminState.posComparison = 0.1;
+            })
+        })
+
+        
     }
 
 </script>

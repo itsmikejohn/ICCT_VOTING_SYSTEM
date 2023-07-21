@@ -20,6 +20,7 @@
     {
         dsComp.loader = true;
         const currentUser:any = auth.currentUser;
+        console.log(currentUser.email)
         updateDoc(doc(collection(db, "positionsFromCreatedPositions"), candidate.description), {
             voting: arrayRemove({
                 voterUID: auth.currentUser?.uid,
@@ -33,7 +34,6 @@
         {
             updateDoc(doc(collection(db, "votesLogicFromChildCreatedPositions"), candidate.description), {
                 [candi.fullname + currentUser.uid] : "",
-                [currentUser.email] : "",
                 [currentUser.uid] : increment(1),
             })
             dsComp.loader = false;
