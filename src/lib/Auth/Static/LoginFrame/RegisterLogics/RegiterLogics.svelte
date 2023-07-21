@@ -32,6 +32,7 @@
                     email: auth.currentUser?.email,
                     password: password,
                     isRestricted: false,
+                    
                 }, {merge:true})
                 .then(voidResp =>
                 {

@@ -3,10 +3,11 @@
     export let Color = "bg-midBlue";
     export let Logic = false;
     export let Logic_title = "Loading";
+    export let Security = false;
 
 </script>
 
-<button class="w-full {Color} px-2 py-1 text-white font-semibold transition-all active:scale-95 hover:opacity-70" on:click>
+<button disabled={Security} class="w-full {Color} px-2 py-1 text-white font-semibold transition-all active:scale-95 hover:opacity-70" on:click>
     {#if Logic}
         <section class="flex items-center gap-1 justify-center">
             <p>{Logic_title}</p>
