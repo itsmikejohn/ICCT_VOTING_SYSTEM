@@ -5,7 +5,7 @@
 
     /** Database calls */
     import { auth,db,adminState } from "$lib";
-    import { doc, deleteDoc, updateDoc, collection, arrayRemove, onSnapshot, increment } from "firebase/firestore";
+    import { doc,  updateDoc, collection, arrayRemove, increment } from "firebase/firestore";
     export let candidate:any;
     export let candi:any;
 
@@ -49,6 +49,7 @@
             <OurButton Color="bg-red-500" Title="Delete"
             Logic={dsComp.loader}
             Logic_title="Deleteing." 
+            Security={dsComp.loader}
             on:click={deleteHandler}/>
             <OurButton Title="Back" on:click={() => $adminState.candiComparison = 0.1}/>
         </section>

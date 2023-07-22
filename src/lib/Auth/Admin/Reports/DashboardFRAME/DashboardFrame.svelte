@@ -41,9 +41,10 @@
     </section>
 
     <section class="w-full sm:max-w-[300px] p-4 bg-[#ef4444]">
-        <p class="text-white font-bold font-sans text-4xl">0</p>
+        <p class="text-white font-bold font-sans text-4xl">{totalVoters}</p>
         <p class="text-white font-semibold">Voters Voted</p>
     </section>
+    
     
 </main>
 

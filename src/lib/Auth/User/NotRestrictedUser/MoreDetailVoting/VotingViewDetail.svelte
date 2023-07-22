@@ -10,6 +10,7 @@
    
     export let candidate:any;
     export let candi:any;
+  
 
     const dsComp = {
         loader: false,
@@ -46,9 +47,21 @@
                     updateDoc(doc(collection(db, "votesLogicFromChildCreatedPositions"), candidate.description), {
                         [currentUser.uid] : increment(-1),
                     })
-                    console.log("noRef");
-                    dsComp.loader = false;
-                    $voterState.voterComparison = 0.1;
+                    .then(voidResp =>
+                    {
+                        setDoc(doc(collection(db, "positionsFromCreatedPositions"), candidate.description),{
+                            [candi.fullname] : {
+                                name: candi.fullname,
+                                description: candidate.description,
+                                platform: candi.platform,
+                                voteCount: increment(1),
+                            }
+
+                        }, {merge:true})
+                        dsComp.loader = false;
+                        $voterState.voterComparison = 0.1;
+                        console.log("hasRef");
+                    })
                     
                 })
                 
@@ -56,7 +69,7 @@
         })
     }
 
-
+   
     const hasRef = (currentUser:any) =>
     {
         setDoc(doc(collection(db, "votesLogicFromChildCreatedPositions"), candidate.description), {
@@ -83,10 +96,22 @@
                     updateDoc(doc(collection(db, "votesLogicFromChildCreatedPositions"), candidate.description), {
                         [currentUser.uid] : increment(-1),
                     })
+                    .then(voidResp =>
+                    {
+                        setDoc(doc(collection(db, "positionsFromCreatedPositions"), candidate.description),{
+                            [candi.fullname] : {
+                                name: candi.fullname,
+                                description: candidate.description,
+                                platform: candi.platform,
+                                voteCount: increment(1),
+                            }
 
-                    dsComp.loader = false;
-                    $voterState.voterComparison = 0.1;
-                    console.log("hasRef");
+                        }, {merge:true})
+                        dsComp.loader = false;
+                        $voterState.voterComparison = 0.1;
+                        console.log("hasRef");
+                    })
+                    
                     
                 })
                 
@@ -94,6 +119,10 @@
         })
         
     }
+
+    
+    
+
 
     const voteHandler = () =>
     {
@@ -115,7 +144,6 @@
                     snapResp.data()[currentUser.uid] ? hasRef(currentUser) : noRef(currentUser);
                 }
                 
-                console.log(snapResp.data()[currentUser.uid])
             })
         })
         

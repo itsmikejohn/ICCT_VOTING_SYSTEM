@@ -2,6 +2,8 @@
 	import { auth } from "$lib";
 
     export let candidate:any;
+
+    let name:string = "Mikey";
     
 </script>
 
@@ -17,8 +19,6 @@
             <p class="px-2 underline bg-[#32302f80] max-w-fit  font-semibold mt-2">{target.voterTarget}</p>
                
         {/if}
-
-        
     {/each}
     </section>
 </section>

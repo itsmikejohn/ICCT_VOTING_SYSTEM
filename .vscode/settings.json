@@ -2,5 +2,17 @@
     "editor.codeActionsOnSave": {},
     "workbench.activityBar.visible": true,
     "workbench.editor.decorations.colors": true,
-    "workbench.preferredHighContrastColorTheme": "Monokai"
+    "workbench.preferredHighContrastColorTheme": "Monokai",
+
+    "workbench.colorCustomizations": {
+        "[Monokai]": {
+            "sideBar.background": "#313a3a76",
+            "editor.background": "#000000"
+        }
+    },
+
+    
+    
+
 }
+
