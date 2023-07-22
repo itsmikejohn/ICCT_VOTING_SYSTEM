@@ -9,7 +9,7 @@
     export let candi:any;
 
     const dsComp = {
-        loader: false,
+    loader: false,
     }
 
     /**

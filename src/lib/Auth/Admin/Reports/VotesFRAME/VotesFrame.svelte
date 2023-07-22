@@ -47,12 +47,12 @@
                     {/if}
                 </section>
     
-                {#if $adminState.candiComparison === outerIndex}
+               <!--  {#if $adminState.candiComparison === outerIndex}
                     {#if $adminState.innerCandiComparison === innerIndex}
                         
                         
                     {/if}
-                {/if}
+                {/if} -->
             {/each}
         {/each}
     </section>
