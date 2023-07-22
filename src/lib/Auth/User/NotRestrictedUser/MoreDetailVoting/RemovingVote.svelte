@@ -13,7 +13,7 @@
     }
 
     /**
-     * This is the reverse of vote function
+     * NOTES unfinish cache as database leaves blueprint at votesLogicFromChildCreatedPositions ....
      */
 
     const removeVoteHandler = () =>
