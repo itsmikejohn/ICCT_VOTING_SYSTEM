@@ -37,7 +37,7 @@
             {#each candidate.candidate as candi, innerIndex}
                 <section class="p-2 flex gap-2 items-center">
                     <button class="transition-all px-2 py-1 bg-slate-300 underline hover:font-semibold active:scale-95"
-                    on:click={() => viewDetailHandler(candidate,outerIndex, innerIndex)}
+                    
                     >{candi.fullname} </button>
 
                     {#if candidate[candi.fullname]}
@@ -57,3 +57,11 @@
         {/each}
     </section>
 </main>
+
+<!--
+    prev button that cause error from votes to candidate due to open onclick
+
+    <button class="transition-all px-2 py-1 bg-slate-300 underline hover:font-semibold active:scale-95"
+                    on:click={() => viewDetailHandler(candidate,outerIndex, innerIndex)}
+                    >{candi.fullname} </button>
+-->
