@@ -13,23 +13,24 @@
     onAuthStateChanged(auth, userCredResp =>
     {
         if(userCredResp)
-        {
+        {// if there is authentication
             if(userCredResp.uid === $adminKey)
             {
+                // admin page
                 $staticState.activeItem = "Dashboard";
                 defaultNav = $staticState.adminNav;
                 $staticState.hasAuth = true;
                 
             }else
             {
-                
+                // voter page   
                 $staticState.activeItem = "Voting System";
-                defaultNav = $staticState.voterNav;
+                defaultNav = $staticState.voterNav;    
                 $staticState.hasAuth = true;
             }
         }else
         {
-            $staticState.hasAuth = false;
+            $staticState.hasAuth = false; // login page
         }
     })
 
