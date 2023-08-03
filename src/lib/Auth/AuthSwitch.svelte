@@ -9,6 +9,8 @@
 	import NavFrame from "./Nav/NavFrame.svelte";
 
     let defaultNav:any;
+    
+    console.log("created by www.youtube.com/@mikeSharesCode");
 
     onAuthStateChanged(auth, userCredResp =>
     {
